@@ -2,48 +2,66 @@
 	"name": "cursor-code-prettifier",
 	"displayName": "Cursor Code Prettifier",
 	"publisher": "kazumasa",
-	"version": "0.0.2",
+	"icon": "icon.png",
+	"version": "0.0.3",
 	"description": "Replace LaTeX commands with symbols in the editor.",
-	"engines": { "vscode": "^1.99.0" },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RyukokuDX/cursor-code-prettifier.git"
+	},
+	"engines": {
+		"vscode": "^1.99.0"
+	},
 	"main": "./out/extension.js",
 	"activationEvents": [
-	  "onStartupFinished",
-	  "onLanguage:latex",
-	  "onLanguage:tex",
-	  "onCommand:cursor-code-prettifier.helloWorld"
+		"onStartupFinished",
+		"onLanguage:latex",
+		"onLanguage:tex"
 	],
 	"contributes": {
-	  "commands": [
-		 { "command": "cursor-code-prettifier.helloWorld", "title": "Prettifier: Hello" }
-	  ],
-	  "configuration": {
-		 "title": "Cursor Code Prettifier",
-		 "properties": {
-			"cursorCodePrettifier.enabled": { "type": "boolean", "default": true },
-			"cursorCodePrettifier.substitutions": {
-			  "type": "array",
-			  "items": {
-				 "type": "object",
-				 "properties": {
-					"original": { "type": "string" },
-					"display": { "type": "string" }
-				 },
-				 "required": ["original","display"]
-			  },
-			  "default": []
+		"configuration": {
+			"title": "Cursor Code Prettifier",
+			"properties": {
+				"cursorCodePrettifier.enabled": {
+					"type": "boolean",
+					"default": true
+				},
+				"cursorCodePrettifier.substitutions": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"original": {
+								"type": "string"
+							},
+							"display": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"original",
+							"display"
+						]
+					},
+					"default": []
+				},
+				"cursorCodePrettifier.hoverRevealMs": {
+					"type": "number",
+					"default": 1600,
+					"description": "ホバー時に元のコマンドを表示する時間（ミリ秒）"
+				}
 			}
-		 }
-	  }
+		}
 	},
 	"scripts": {
-	  "compile": "tsc -p ./",
-	  "watch": "tsc -w -p ./"
+		"compile": "tsc -p ./",
+		"watch": "tsc -w -p ./"
 	},
 	"devDependencies": {
-	  "typescript": "^5.9.2",
-	  "@types/vscode": "^1.99.0",
-	  "@types/node": "^20",
-	  "@types/mocha": "^10.0.10"
+		"@types/mocha": "^10.0.10",
+		"@types/node": "^20",
+		"@types/vscode": "^1.99.0",
+		"@vscode/vsce": "^3.6.0",
+		"typescript": "^5.9.2"
 	}
- }
- 
+}
