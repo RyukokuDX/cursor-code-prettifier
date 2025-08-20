@@ -1,0 +1,19 @@
+{
+  "cursorCodePrettifier.enabled": true,
+  "cursorCodePrettifier.substitutions": [
+    {
+      "language": "latex",
+      "words": [
+        { "original": "\\\\alpha", "display": "α" },
+        { "original": "\\\\beta", "display": "β" },
+        { "original": "\\\\gamma", "display": "γ" }
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
