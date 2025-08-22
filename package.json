@@ -914,11 +914,15 @@
               "display": "🌲"
             },
             {
+              "original": "\\quad",
+              "display": "💨"
+            },
+            {
               "original": "\\\\",
               "display": "⏎"
             }
           ],
-          "description": "数学コマンドグループの変換候補（\\frac, \\sqrt, \\left, \\right, \\biggなど）"
+          "description": "数学コマンドグループの変換候補（\\frac, \\sqrt, \\left, \\right, \\bigg, \\quadなど）"
         },
         "cursorCodePrettifier.tex_commands": {
           "type": "array",
