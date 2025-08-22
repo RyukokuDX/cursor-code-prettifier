@@ -1,67 +1,309 @@
 {
-	"name": "cursor-code-prettifier",
-	"displayName": "Cursor Code Prettifier",
-	"publisher": "kazumasa",
-	"icon": "icon.png",
-	"version": "0.0.3",
-	"description": "Replace LaTeX commands with symbols in the editor.",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/RyukokuDX/cursor-code-prettifier.git"
-	},
-	"engines": {
-		"vscode": "^1.99.0"
-	},
-	"main": "./out/extension.js",
-	"activationEvents": [
-		"onStartupFinished",
-		"onLanguage:latex",
-		"onLanguage:tex"
-	],
-	"contributes": {
-		"configuration": {
-			"title": "Cursor Code Prettifier",
-			"properties": {
-				"cursorCodePrettifier.enabled": {
-					"type": "boolean",
-					"default": true
-				},
-				"cursorCodePrettifier.substitutions": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"original": {
-								"type": "string"
-							},
-							"display": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"original",
-							"display"
-						]
-					},
-					"default": []
-				},
-				"cursorCodePrettifier.hoverRevealMs": {
-					"type": "number",
-					"default": 1600,
-					"description": "ホバー時に元のコマンドを表示する時間（ミリ秒）"
-				}
-			}
-		}
-	},
-	"scripts": {
-		"compile": "tsc -p ./",
-		"watch": "tsc -w -p ./"
-	},
-	"devDependencies": {
-		"@types/mocha": "^10.0.10",
-		"@types/node": "^20",
-		"@types/vscode": "^1.99.0",
-		"@vscode/vsce": "^3.6.0",
-		"typescript": "^5.9.2"
-	}
+  "name": "cursor-code-prettifier",
+  "displayName": "Cursor Code Prettifier",
+  "publisher": "kazumasa",
+  "icon": "icon.png",
+  "version": "0.0.6",
+  "description": "Replace LaTeX commands with symbols in the editor.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RyukokuDX/cursor-code-prettifier.git"
+  },
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:latex",
+    "onLanguage:tex"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Cursor Code Prettifier",
+      "properties": {
+        "cursorCodePrettifier.enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "cursorCodePrettifier.substitutions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "original": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "original",
+              "display"
+            ]
+          },
+          "default": [
+            {
+              "original": "\\forall",
+              "display": "∀"
+            },
+            {
+              "original": "\\exists",
+              "display": "∃"
+            },
+            {
+              "original": "\\partial",
+              "display": "∂"
+            },
+            {
+              "original": "\\varphi",
+              "display": "φ"
+            },
+            {
+              "original": "\\varepsilon",
+              "display": "ε"
+            },
+            {
+              "original": "\\notin",
+              "display": "∉"
+            },
+            {
+              "original": "\\lesssim",
+              "display": "≲"
+            },
+            {
+              "original": "\\sim",
+              "display": "∼"
+            },
+            {
+              "original": "\\infty",
+              "display": "∞"
+            },
+            {
+              "original": "\\int",
+              "display": "∫"
+            },
+            {
+              "original": "\\leq",
+              "display": "≤"
+            },
+            {
+              "original": "\\geq",
+              "display": "≥"
+            },
+            {
+              "original": "\\to",
+              "display": "→"
+            },
+            {
+              "original": "\\Delta",
+              "display": "Δ"
+            },
+            {
+              "original": "\\alpha",
+              "display": "α"
+            },
+            {
+              "original": "\\beta",
+              "display": "β"
+            },
+            {
+              "original": "\\gamma",
+              "display": "γ"
+            },
+            {
+              "original": "\\delta",
+              "display": "δ"
+            },
+            {
+              "original": "\\rho",
+              "display": "ρ"
+            },
+            {
+              "original": "\\theta",
+              "display": "θ"
+            },
+            {
+              "original": "\\sigma",
+              "display": "σ"
+            },
+            {
+              "original": "\\tau",
+              "display": "τ"
+            },
+            {
+              "original": "\\cap",
+              "display": "∩"
+            },
+            {
+              "original": "\\cup",
+              "display": "∪"
+            },
+            {
+              "original": "\\emptyset",
+              "display": "∅"
+            },
+            {
+              "original": "\\times",
+              "display": "×"
+            },
+            {
+              "original": "\\prime",
+              "display": "′"
+            },
+            {
+              "original": "\\in",
+              "display": "∈"
+            },
+            {
+              "original": "\\mathbb{R}",
+              "display": "ℝ"
+            },
+            {
+              "original": "\\mathbb{N}",
+              "display": "ℕ"
+            },
+            {
+              "original": "\\mathbb{Z}",
+              "display": "ℤ"
+            },
+            {
+              "original": "\\mathbb{Q}",
+              "display": "ℚ"
+            },
+            {
+              "original": "\\mathbb{C}",
+              "display": "ℂ"
+            },
+            {
+              "original": "\\mathbb{H}",
+              "display": "ℍ"
+            },
+            {
+              "original": "\\mathbb{O}",
+              "display": "𝒪"
+            },
+            {
+              "original": "\\mathbb{S}",
+              "display": "𝒮"
+            },
+            {
+              "original": "\\mathbb R",
+              "display": "ℝ"
+            },
+            {
+              "original": "\\left",
+              "display": "️️️️◀️"
+            },
+            {
+              "original": "\\right",
+              "display": "️️▶️"
+            },
+            {
+              "original": "\\frac",
+              "display": "〓"
+            },
+            {
+              "original": "\\sqrt",
+              "display": "⟦√⟧"
+            },
+            {
+              "original": "\\|",
+              "display": "‖"
+            },
+            {
+              "original": "\\label",
+              "display": "🏷️"
+            },
+            {
+              "original": "\\ref",
+              "display": "🔗"
+            },
+            {
+              "original": "\\eqref",
+              "display": "🔢"
+            },
+            {
+              "original": "\\section",
+              "display": "🟥"
+            },
+            {
+              "original": "\\subsection",
+              "display": "🟨"
+            },
+            {
+              "original": "\\subsubsection",
+              "display": "🟩"
+            },
+            {
+              "original": "\\begin",
+              "display": "⏩"
+            },
+            {
+              "original": "\\end",
+              "display": "⏪"
+            },
+            {
+              "original": "\\cite",
+              "display": "📖"
+            },
+            {
+              "original": "\\newtheorem",
+              "display": "🏛️"
+            },
+            {
+              "original": "\\usepackage",
+              "display": "📦"
+            },
+            {
+              "original": "\\documentclass",
+              "display": "☃️"
+            },
+            {
+              "original": "\\title",
+              "display": "📘"
+            },
+            {
+              "original": "\\author",
+              "display": "😎"
+            },
+            {
+              "original": "\\date",
+              "display": "📅"
+            },
+            {
+              "original": "\\bibliographystyle",
+              "display": "🎨"
+            },
+            {
+              "original": "\\bibliography",
+              "display": "📚"
+            }
+          ]
+        },
+        "cursorCodePrettifier.hoverRevealMs": {
+          "type": "number",
+          "default": 1600,
+          "description": "ホバー時に元のコマンドを表示する時間（ミリ秒）"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "bump-version": "node scripts/bump-version.js",
+    "build": "npm run bump-version && npm run compile && npx vsce package",
+    "build-quick": "npm run compile && npx vsce package",
+    "install-vsix": "node scripts/install-vsix.js",
+    "update": "node scripts/update-extension.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20",
+    "@types/vscode": "^1.99.0",
+    "@vscode/vsce": "^3.6.0",
+    "typescript": "^5.9.2"
+  }
 }
