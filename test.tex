@@ -1,10 +1,7 @@
 \documentclass{article}
 \begin{document}
 
-% 新しく追加された記号のテスト
-\bigg( \ll \\
-
-% 既存の記号のテスト  
+% Symbol group test (記号グループ)
 \alpha \beta \gamma \delta
 \forall \exists \partial \infty
 \int \iint \iiint \oint
@@ -13,7 +10,15 @@
 \mathbb{R} \mathbb{N} \mathbb{Z} \mathbb{Q} \mathbb{C}
 \mathfrak{A} \mathfrak{B} \mathfrak{C}
 \in \notin \subset \supset \cup \cap
+\ll \\
+
+% Math commands group test (数学コマンドグループ)
+\left( \right) \frac{1}{2} \sqrt{x} \bigg(
+
+% TeX commands group test (TeXコマンドグループ)
 \section{Test} \subsection{Test} \subsubsection{Test}
+\begin{equation} \end{equation}
+\cite{reference} \label{eq:test} \ref{eq:test}
 
 \end{document}
 

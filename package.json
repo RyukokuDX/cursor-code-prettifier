@@ -3,7 +3,7 @@
   "displayName": "Cursor Code Prettifier",
   "publisher": "kazumasa",
   "icon": "icon.png",
-  "version": "0.0.12",
+  "version": "0.1.1",
   "description": "Replace LaTeX commands with symbols in the editor.",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
           "type": "boolean",
           "default": true
         },
-        "cursorCodePrettifier.substitutions": {
+        "cursorCodePrettifier.symbols": {
           "type": "array",
           "items": {
             "type": "object",
@@ -869,6 +869,31 @@
               "display": "ℨ"
             },
             {
+              "original": "\\ll",
+              "display": "≪"
+            }
+          ],
+          "description": "記号グループの変換候補（ギリシャ文字、矢印、集合演算など）"
+        },
+        "cursorCodePrettifier.math_commands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "original": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "original",
+              "display"
+            ]
+          },
+          "default": [
+            {
               "original": "\\left",
               "display": "️️️️◀️"
             },
@@ -885,9 +910,34 @@
               "display": "⟦√⟧"
             },
             {
-              "original": "\\|",
-              "display": "‖"
+              "original": "\\bigg",
+              "display": "🌲"
             },
+            {
+              "original": "\\\\",
+              "display": "⏎"
+            }
+          ],
+          "description": "数学コマンドグループの変換候補（\\frac, \\sqrt, \\left, \\right, \\biggなど）"
+        },
+        "cursorCodePrettifier.tex_commands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "original": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "original",
+              "display"
+            ]
+          },
+          "default": [
             {
               "original": "\\label",
               "display": "🏷️"
@@ -955,25 +1005,29 @@
             {
               "original": "\\bibliography",
               "display": "📚"
-            },
-            {
-              "original": "\\bigg",
-              "display": "🌲"
-            },
-            {
-              "original": "\\ll",
-              "display": "≪"
-            },
-            {
-              "original": "\\\\",
-              "display": "⏎"
             }
-          ]
+          ],
+          "description": "TeXコマンドグループの変換候補（\\begin, \\end, \\section, \\citeなど）"
         },
         "cursorCodePrettifier.hoverRevealMs": {
           "type": "number",
           "default": 1600,
           "description": "ホバー時に元のコマンドを表示する時間（ミリ秒）"
+        },
+        "cursorCodePrettifier.symbolEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "記号グループ（ギリシャ文字、矢印、集合演算など）の有効/無効"
+        },
+        "cursorCodePrettifier.mathEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "数学コマンドグループ（\\frac, \\sqrt, \\left, \\right, \\biggなど）の有効/無効"
+        },
+        "cursorCodePrettifier.texEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "TeXコマンドグループ（\\begin, \\end, \\section, \\citeなど）の有効/無効"
         }
       }
     }
