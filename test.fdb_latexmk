@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1755841077 "/home/kf/github/cursor-code-prettifier/test.tex" "test.pdf" "test" 1755841084 2
-  "/home/kf/github/cursor-code-prettifier/test.tex" 1755841078 697 f8a655b5e32c5a2771b8c361321d71e2 ""
+["pdflatex"] 1755843976 "/home/kf/github/cursor-code-prettifier/test.tex" "test.pdf" "test" 1755843982 2
+  "/home/kf/github/cursor-code-prettifier/test.tex" 1755843976 697 f8a655b5e32c5a2771b8c361321d71e2 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -19,7 +19,7 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1697695466 4710157 881d30f3c679b3ae82ecfb33f956b294 ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1697695625 8195310 abfac462c1c499cdc82a70f575b33a99 ""
   "/usr/local/texlive/2023/texmf.cnf" 1697695455 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "test.aux" 1755841083 381 ad3ec989ca096832409376794fbbb893 "pdflatex"
+  "test.aux" 1755843982 381 ad3ec989ca096832409376794fbbb893 "pdflatex"
   (generated)
   "test.aux"
   "test.log"
