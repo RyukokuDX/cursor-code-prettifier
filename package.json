@@ -3,7 +3,7 @@
   "displayName": "Cursor Code Prettifier",
   "publisher": "kazumasa",
   "icon": "icon.png",
-  "version": "0.0.6",
+  "version": "0.0.12",
   "description": "Replace LaTeX commands with symbols in the editor.",
   "repository": {
     "type": "git",
@@ -57,16 +57,8 @@
               "display": "∂"
             },
             {
-              "original": "\\varphi",
-              "display": "φ"
-            },
-            {
-              "original": "\\varepsilon",
-              "display": "ε"
-            },
-            {
-              "original": "\\notin",
-              "display": "∉"
+              "original": "\\infty",
+              "display": "∞"
             },
             {
               "original": "\\lesssim",
@@ -77,14 +69,6 @@
               "display": "∼"
             },
             {
-              "original": "\\infty",
-              "display": "∞"
-            },
-            {
-              "original": "\\int",
-              "display": "∫"
-            },
-            {
               "original": "\\leq",
               "display": "≤"
             },
@@ -93,12 +77,16 @@
               "display": "≥"
             },
             {
-              "original": "\\to",
-              "display": "→"
+              "original": "\\times",
+              "display": "×"
             },
             {
-              "original": "\\Delta",
-              "display": "Δ"
+              "original": "\\prime",
+              "display": "′"
+            },
+            {
+              "original": "\\|",
+              "display": "‖"
             },
             {
               "original": "\\alpha",
@@ -117,12 +105,56 @@
               "display": "δ"
             },
             {
-              "original": "\\rho",
-              "display": "ρ"
+              "original": "\\epsilon",
+              "display": "ϵ"
+            },
+            {
+              "original": "\\varepsilon",
+              "display": "ε"
+            },
+            {
+              "original": "\\zeta",
+              "display": "ζ"
+            },
+            {
+              "original": "\\eta",
+              "display": "η"
             },
             {
               "original": "\\theta",
               "display": "θ"
+            },
+            {
+              "original": "\\iota",
+              "display": "ι"
+            },
+            {
+              "original": "\\kappa",
+              "display": "κ"
+            },
+            {
+              "original": "\\lambda",
+              "display": "λ"
+            },
+            {
+              "original": "\\mu",
+              "display": "μ"
+            },
+            {
+              "original": "\\nu",
+              "display": "ν"
+            },
+            {
+              "original": "\\xi",
+              "display": "ξ"
+            },
+            {
+              "original": "\\pi",
+              "display": "π"
+            },
+            {
+              "original": "\\rho",
+              "display": "ρ"
             },
             {
               "original": "\\sigma",
@@ -131,6 +163,310 @@
             {
               "original": "\\tau",
               "display": "τ"
+            },
+            {
+              "original": "\\upsilon",
+              "display": "υ"
+            },
+            {
+              "original": "\\phi",
+              "display": "ϕ"
+            },
+            {
+              "original": "\\varphi",
+              "display": "φ"
+            },
+            {
+              "original": "\\chi",
+              "display": "χ"
+            },
+            {
+              "original": "\\psi",
+              "display": "ψ"
+            },
+            {
+              "original": "\\omega",
+              "display": "ω"
+            },
+            {
+              "original": "\\Delta",
+              "display": "Δ"
+            },
+            {
+              "original": "\\Gamma",
+              "display": "Γ"
+            },
+            {
+              "original": "\\Theta",
+              "display": "Θ"
+            },
+            {
+              "original": "\\Lambda",
+              "display": "Λ"
+            },
+            {
+              "original": "\\Xi",
+              "display": "Ξ"
+            },
+            {
+              "original": "\\Pi",
+              "display": "Π"
+            },
+            {
+              "original": "\\Sigma",
+              "display": "Σ"
+            },
+            {
+              "original": "\\Phi",
+              "display": "Φ"
+            },
+            {
+              "original": "\\Psi",
+              "display": "Ψ"
+            },
+            {
+              "original": "\\Omega",
+              "display": "Ω"
+            },
+            {
+              "original": "\\int",
+              "display": "∫"
+            },
+            {
+              "original": "\\iint",
+              "display": "∬"
+            },
+            {
+              "original": "\\iiint",
+              "display": "∭"
+            },
+            {
+              "original": "\\iiiint",
+              "display": "⨌"
+            },
+            {
+              "original": "\\oint",
+              "display": "∮"
+            },
+            {
+              "original": "\\oiint",
+              "display": "∯"
+            },
+            {
+              "original": "\\oiiint",
+              "display": "∰"
+            },
+            {
+              "original": "\\intop",
+              "display": "∫"
+            },
+            {
+              "original": "\\smallint",
+              "display": "∫"
+            },
+            {
+              "original": "\\intlimits",
+              "display": "∫"
+            },
+            {
+              "original": "\\int\\limits",
+              "display": "∫"
+            },
+            {
+              "original": "\\int\\nolimits",
+              "display": "∫"
+            },
+            {
+              "original": "\\sum\\limits",
+              "display": "∑"
+            },
+            {
+              "original": "\\sum\\nolimits",
+              "display": "∑"
+            },
+            {
+              "original": "\\prod\\limits",
+              "display": "∏"
+            },
+            {
+              "original": "\\prod\\nolimits",
+              "display": "∏"
+            },
+            {
+              "original": "\\coprod\\limits",
+              "display": "∐"
+            },
+            {
+              "original": "\\coprod\\nolimits",
+              "display": "∐"
+            },
+            {
+              "original": "\\bigcup\\limits",
+              "display": "⋃"
+            },
+            {
+              "original": "\\bigcap\\limits",
+              "display": "⋂"
+            },
+            {
+              "original": "\\bigvee\\limits",
+              "display": "⋁"
+            },
+            {
+              "original": "\\bigwedge\\limits",
+              "display": "⋀"
+            },
+            {
+              "original": "\\biguplus\\limits",
+              "display": "⨄"
+            },
+            {
+              "original": "\\bigsqcup\\limits",
+              "display": "⨆"
+            },
+            {
+              "original": "\\to",
+              "display": "→"
+            },
+            {
+              "original": "\\leftarrow",
+              "display": "←"
+            },
+            {
+              "original": "\\rightarrow",
+              "display": "→"
+            },
+            {
+              "original": "\\leftrightarrow",
+              "display": "↔"
+            },
+            {
+              "original": "\\Leftarrow",
+              "display": "⇐"
+            },
+            {
+              "original": "\\Rightarrow",
+              "display": "⇒"
+            },
+            {
+              "original": "\\Leftrightarrow",
+              "display": "⇔"
+            },
+            {
+              "original": "\\mapsto",
+              "display": "↦"
+            },
+            {
+              "original": "\\hookleftarrow",
+              "display": "↩"
+            },
+            {
+              "original": "\\hookrightarrow",
+              "display": "↪"
+            },
+            {
+              "original": "\\leftharpoonup",
+              "display": "↼"
+            },
+            {
+              "original": "\\rightharpoonup",
+              "display": "⇀"
+            },
+            {
+              "original": "\\leftharpoondown",
+              "display": "↽"
+            },
+            {
+              "original": "\\rightharpoondown",
+              "display": "⇁"
+            },
+            {
+              "original": "\\rightleftharpoons",
+              "display": "⇌"
+            },
+            {
+              "original": "\\leftrightharpoons",
+              "display": "⇋"
+            },
+            {
+              "original": "\\uparrow",
+              "display": "↑"
+            },
+            {
+              "original": "\\downarrow",
+              "display": "↓"
+            },
+            {
+              "original": "\\updownarrow",
+              "display": "↕"
+            },
+            {
+              "original": "\\Uparrow",
+              "display": "⇑"
+            },
+            {
+              "original": "\\Downarrow",
+              "display": "⇓"
+            },
+            {
+              "original": "\\Updownarrow",
+              "display": "⇕"
+            },
+            {
+              "original": "\\nearrow",
+              "display": "↗"
+            },
+            {
+              "original": "\\searrow",
+              "display": "↘"
+            },
+            {
+              "original": "\\swarrow",
+              "display": "↙"
+            },
+            {
+              "original": "\\nwarrow",
+              "display": "↖"
+            },
+            {
+              "original": "\\longleftarrow",
+              "display": "⟵"
+            },
+            {
+              "original": "\\longrightarrow",
+              "display": "⟶"
+            },
+            {
+              "original": "\\longleftrightarrow",
+              "display": "⟷"
+            },
+            {
+              "original": "\\Longleftarrow",
+              "display": "⟸"
+            },
+            {
+              "original": "\\Longrightarrow",
+              "display": "⟹"
+            },
+            {
+              "original": "\\Longleftrightarrow",
+              "display": "⟺"
+            },
+            {
+              "original": "\\longmapsto",
+              "display": "⟼"
+            },
+            {
+              "original": "\\xleftarrow",
+              "display": "⟵"
+            },
+            {
+              "original": "\\xrightarrow",
+              "display": "⟶"
+            },
+            {
+              "original": "\\xleftrightarrow",
+              "display": "⟷"
             },
             {
               "original": "\\cap",
@@ -145,16 +481,152 @@
               "display": "∅"
             },
             {
-              "original": "\\times",
-              "display": "×"
-            },
-            {
-              "original": "\\prime",
-              "display": "′"
-            },
-            {
               "original": "\\in",
               "display": "∈"
+            },
+            {
+              "original": "\\notin",
+              "display": "∉"
+            },
+            {
+              "original": "\\ni",
+              "display": "∋"
+            },
+            {
+              "original": "\\notni",
+              "display": "∌"
+            },
+            {
+              "original": "\\subset",
+              "display": "⊂"
+            },
+            {
+              "original": "\\supset",
+              "display": "⊃"
+            },
+            {
+              "original": "\\subseteq",
+              "display": "⊆"
+            },
+            {
+              "original": "\\supseteq",
+              "display": "⊇"
+            },
+            {
+              "original": "\\subsetneq",
+              "display": "⊊"
+            },
+            {
+              "original": "\\supsetneq",
+              "display": "⊋"
+            },
+            {
+              "original": "\\sqsubset",
+              "display": "⊏"
+            },
+            {
+              "original": "\\sqsupset",
+              "display": "⊐"
+            },
+            {
+              "original": "\\sqsubseteq",
+              "display": "⊑"
+            },
+            {
+              "original": "\\sqsupseteq",
+              "display": "⊒"
+            },
+            {
+              "original": "\\setminus",
+              "display": "∖"
+            },
+            {
+              "original": "\\triangle",
+              "display": "△"
+            },
+            {
+              "original": "\\bigtriangleup",
+              "display": "△"
+            },
+            {
+              "original": "\\bigtriangledown",
+              "display": "▽"
+            },
+            {
+              "original": "\\triangleleft",
+              "display": "◁"
+            },
+            {
+              "original": "\\triangleright",
+              "display": "▷"
+            },
+            {
+              "original": "\\oplus",
+              "display": "⊕"
+            },
+            {
+              "original": "\\ominus",
+              "display": "⊖"
+            },
+            {
+              "original": "\\otimes",
+              "display": "⊗"
+            },
+            {
+              "original": "\\oslash",
+              "display": "⊘"
+            },
+            {
+              "original": "\\odot",
+              "display": "⊙"
+            },
+            {
+              "original": "\\bigcirc",
+              "display": "○"
+            },
+            {
+              "original": "\\amalg",
+              "display": "⨿"
+            },
+            {
+              "original": "\\uplus",
+              "display": "⊎"
+            },
+            {
+              "original": "\\bigcup",
+              "display": "⋃"
+            },
+            {
+              "original": "\\bigcap",
+              "display": "⋂"
+            },
+            {
+              "original": "\\biguplus",
+              "display": "⨄"
+            },
+            {
+              "original": "\\bigsqcup",
+              "display": "⨆"
+            },
+            {
+              "original": "\\coprod",
+              "display": "∐"
+            },
+            {
+              "original": "\\prod",
+              "display": "∏"
+            },
+            {
+              "original": "\\sum",
+              "display": "∑"
+            },
+            {
+              "original": "\\bigvee",
+              "display": "⋁"
+            },
+            {
+              "original": "\\bigwedge",
+              "display": "⋀"
             },
             {
               "original": "\\mathbb{R}",
@@ -191,6 +663,210 @@
             {
               "original": "\\mathbb R",
               "display": "ℝ"
+            },
+            {
+              "original": "\\mathbb A",
+              "display": "𝔸"
+            },
+            {
+              "original": "\\mathbb B",
+              "display": "𝔹"
+            },
+            {
+              "original": "\\mathbb C",
+              "display": "ℂ"
+            },
+            {
+              "original": "\\mathbb D",
+              "display": "𝔻"
+            },
+            {
+              "original": "\\mathbb E",
+              "display": "𝔼"
+            },
+            {
+              "original": "\\mathbb F",
+              "display": "𝔽"
+            },
+            {
+              "original": "\\mathbb G",
+              "display": "𝔾"
+            },
+            {
+              "original": "\\mathbb H",
+              "display": "ℍ"
+            },
+            {
+              "original": "\\mathbb I",
+              "display": "𝕀"
+            },
+            {
+              "original": "\\mathbb J",
+              "display": "𝕁"
+            },
+            {
+              "original": "\\mathbb K",
+              "display": "𝕂"
+            },
+            {
+              "original": "\\mathbb L",
+              "display": "𝕃"
+            },
+            {
+              "original": "\\mathbb M",
+              "display": "𝕄"
+            },
+            {
+              "original": "\\mathbb N",
+              "display": "ℕ"
+            },
+            {
+              "original": "\\mathbb O",
+              "display": "𝕆"
+            },
+            {
+              "original": "\\mathbb P",
+              "display": "ℙ"
+            },
+            {
+              "original": "\\mathbb Q",
+              "display": "ℚ"
+            },
+            {
+              "original": "\\mathbb S",
+              "display": "𝕊"
+            },
+            {
+              "original": "\\mathbb T",
+              "display": "𝕋"
+            },
+            {
+              "original": "\\mathbb U",
+              "display": "𝕌"
+            },
+            {
+              "original": "\\mathbb V",
+              "display": "𝕍"
+            },
+            {
+              "original": "\\mathbb W",
+              "display": "𝕎"
+            },
+            {
+              "original": "\\mathbb X",
+              "display": "𝕏"
+            },
+            {
+              "original": "\\mathbb Y",
+              "display": "𝕐"
+            },
+            {
+              "original": "\\mathbb Z",
+              "display": "ℤ"
+            },
+            {
+              "original": "\\mathfrak A",
+              "display": "𝔄"
+            },
+            {
+              "original": "\\mathfrak B",
+              "display": "𝔅"
+            },
+            {
+              "original": "\\mathfrak C",
+              "display": "ℭ"
+            },
+            {
+              "original": "\\mathfrak D",
+              "display": "𝔇"
+            },
+            {
+              "original": "\\mathfrak E",
+              "display": "𝔈"
+            },
+            {
+              "original": "\\mathfrak F",
+              "display": "𝔉"
+            },
+            {
+              "original": "\\mathfrak G",
+              "display": "𝔊"
+            },
+            {
+              "original": "\\mathfrak H",
+              "display": "ℌ"
+            },
+            {
+              "original": "\\mathfrak I",
+              "display": "ℑ"
+            },
+            {
+              "original": "\\mathfrak J",
+              "display": "𝔍"
+            },
+            {
+              "original": "\\mathfrak K",
+              "display": "𝔎"
+            },
+            {
+              "original": "\\mathfrak L",
+              "display": "𝔏"
+            },
+            {
+              "original": "\\mathfrak M",
+              "display": "𝔐"
+            },
+            {
+              "original": "\\mathfrak N",
+              "display": "𝔑"
+            },
+            {
+              "original": "\\mathfrak O",
+              "display": "𝔒"
+            },
+            {
+              "original": "\\mathfrak P",
+              "display": "𝔓"
+            },
+            {
+              "original": "\\mathfrak Q",
+              "display": "𝔔"
+            },
+            {
+              "original": "\\mathfrak R",
+              "display": "ℜ"
+            },
+            {
+              "original": "\\mathfrak S",
+              "display": "𝔖"
+            },
+            {
+              "original": "\\mathfrak T",
+              "display": "𝔗"
+            },
+            {
+              "original": "\\mathfrak U",
+              "display": "𝔘"
+            },
+            {
+              "original": "\\mathfrak V",
+              "display": "𝔙"
+            },
+            {
+              "original": "\\mathfrak W",
+              "display": "𝔚"
+            },
+            {
+              "original": "\\mathfrak X",
+              "display": "𝔛"
+            },
+            {
+              "original": "\\mathfrak Y",
+              "display": "𝔜"
+            },
+            {
+              "original": "\\mathfrak Z",
+              "display": "ℨ"
             },
             {
               "original": "\\left",
@@ -279,6 +955,18 @@
             {
               "original": "\\bibliography",
               "display": "📚"
+            },
+            {
+              "original": "\\bigg",
+              "display": "🌲"
+            },
+            {
+              "original": "\\ll",
+              "display": "≪"
+            },
+            {
+              "original": "\\\\",
+              "display": "⏎"
             }
           ]
         },
@@ -296,6 +984,7 @@
     "bump-version": "node scripts/bump-version.js",
     "build": "npm run bump-version && npm run compile && npx vsce package",
     "build-quick": "npm run compile && npx vsce package",
+    "build-latest": "node scripts/build-latest.js",
     "install-vsix": "node scripts/install-vsix.js",
     "update": "node scripts/update-extension.js"
   },

@@ -1,6 +1,12 @@
 # Cursor Code Prettifier
 
-Cursor Code Prettifierは、VS Code拡張機能で、LaTeXファイル内のコマンドを視覚的に美しい記号や絵文字に置き換えて表示する機能を提供します。例えば、`\alpha`を`α`として表示し、マウスホバー時に元のコマンドを確認できるようになります。
+Cursor Code Prettifierは、VS Code/Cursor拡張機能で、LaTeXファイル内のコマンドを視覚的に美しい記号や絵文字に置き換えて表示する機能を提供します。例えば、`\alpha`を`α`として表示し、マウスホバー時に元のコマンドを確認できるようになります。
+
+## 🚀 新機能（v0.0.9以降）
+
+- **豊富な数学記号**: ギリシャ文字、矢印、集合演算、積分記号など300以上の記号をサポート
+- **カテゴリ別グループ化**: 論理記号、数学記号、ギリシャ文字、積分・和・積、矢印類、集合演算、特殊文字、LaTeXコマンドに分類
+- **自動ビルドシステム**: 固定名VSIXファイルによる簡単な更新プロセス
 
 ## 機能
 
@@ -16,16 +22,7 @@ Cursor Code Prettifierは、VS Code拡張機能で、LaTeXファイル内のコ�
 
 ## インストール
 
-### VSIXファイルからのインストール（推奨）
-
-1. [Releases](https://github.com/RyukokuDX/cursor-code-prettifier/releases)ページから最新のVSIXファイル（`cursor-code-prettifier-0.0.3.vsix`）をダウンロード
-2. VS Codeを開く
-3. 拡張機能タブ（Ctrl+Shift+X）を開く
-4. 「...」メニュー（右上の歯車アイコン）をクリック
-5. 「VSIXからのインストール」を選択
-6. ダウンロードしたVSIXファイルを選択してインストール
-
-### 手動ビルドからのインストール
+### 開発者向けインストール（推奨）
 
 1. リポジトリをクローン
    ```bash
@@ -33,17 +30,35 @@ Cursor Code Prettifierは、VS Code拡張機能で、LaTeXファイル内のコ�
    cd cursor-code-prettifier
    ```
 
-2. 依存関係をインストールしてビルド
+2. 依存関係をインストール
    ```bash
    npm install
-   npm run compile
-   npx vsce package
    ```
 
-3. 生成されたVSIXファイルをインストール
-   - VS Codeで拡張機能タブを開く
-   - 「...」メニューから「VSIXからのインストール」を選択
-   - `cursor-code-prettifier-0.0.3.vsix`を選択
+3. 固定名VSIXファイルをビルド
+   ```bash
+   npm run build-latest
+   ```
+
+4. Cursor/VS Codeでインストール
+   - 拡張機能タブ（Ctrl+Shift+X）を開く
+   - 「...」メニュー（右上の歯車アイコン）をクリック
+   - 「VSIXからのインストール」を選択
+   - `cursor-code-prettifier-latest.vsix`を選択
+
+### 更新手順
+
+コードを変更した後は、以下のコマンドで簡単に更新できます：
+
+```bash
+npm run build-latest
+```
+
+その後、同じ`cursor-code-prettifier-latest.vsix`ファイルで再インストールするだけで更新されます（アンインストール不要）。
+
+### 従来のインストール方法
+
+[Releases](https://github.com/RyukokuDX/cursor-code-prettifier/releases)ページから最新のVSIXファイルをダウンロードしてインストールすることも可能です。
 
 ## 設定
 
@@ -57,6 +72,50 @@ Cursor Code Prettifierは、VS Code拡張機能で、LaTeXファイル内のコ�
 ### `cursorCodePrettifier.substitutions`
 - **型**: `array`
 - **説明**: LaTeXコマンドの置き換えルールを定義
+
+#### 対応記号カテゴリ
+
+現在、以下のカテゴリの記号をサポートしています：
+
+**論理記号**
+- `\forall` → ∀, `\exists` → ∃
+
+**数学記号**
+- `\partial` → ∂, `\infty` → ∞, `\leq` → ≤, `\geq` → ≥, `\times` → ×, `\prime` → ′, `\|` → ‖
+
+**ギリシャ文字（小文字）**
+- `\alpha` → α, `\beta` → β, `\gamma` → γ, `\delta` → δ, `\epsilon` → ϵ, `\varepsilon` → ε, `\zeta` → ζ, `\eta` → η, `\theta` → θ, `\iota` → ι, `\kappa` → κ, `\lambda` → λ, `\mu` → μ, `\nu` → ν, `\xi` → ξ, `\pi` → π, `\rho` → ρ, `\sigma` → σ, `\tau` → τ, `\upsilon` → υ, `\phi` → ϕ, `\varphi` → φ, `\chi` → χ, `\psi` → ψ, `\omega` → ω
+
+**ギリシャ文字（大文字）**
+- `\Delta` → Δ, `\Gamma` → Γ, `\Theta` → Θ, `\Lambda` → Λ, `\Xi` → Ξ, `\Pi` → Π, `\Sigma` → Σ, `\Phi` → Φ, `\Psi` → Ψ, `\Omega` → Ω
+
+**積分・和・積**
+- `\int` → ∫, `\iint` → ∬, `\iiint` → ∭, `\iiiint` → ⨌, `\oint` → ∮, `\oiint` → ∯, `\oiiint` → ∰
+- `\sum` → ∑, `\prod` → ∏, `\coprod` → ∐, `\bigcup` → ⋃, `\bigcap` → ⋂, `\bigvee` → ⋁, `\bigwedge` → ⋀
+
+**矢印類**
+- `\to` → →, `\leftarrow` → ←, `\rightarrow` → →, `\leftrightarrow` → ↔
+- `\Leftarrow` → ⇐, `\Rightarrow` → ⇒, `\Leftrightarrow` → ⇔
+- `\mapsto` → ↦, `\hookleftarrow` → ↩, `\hookrightarrow` → ↪
+- `\uparrow` → ↑, `\downarrow` → ↓, `\updownarrow` → ↕
+- `\nearrow` → ↗, `\searrow` → ↘, `\swarrow` → ↙, `\nwarrow` → ↖
+- `\longleftarrow` → ⟵, `\longrightarrow` → ⟶, `\longleftrightarrow` → ⟷
+
+**集合演算**
+- `\in` → ∈, `\notin` → ∉, `\ni` → ∋, `\notni` → ∌
+- `\subset` → ⊂, `\supset` → ⊃, `\subseteq` → ⊆, `\supseteq` → ⊇
+- `\cap` → ∩, `\cup` → ∪, `\emptyset` → ∅, `\setminus` → ∖
+- `\oplus` → ⊕, `\ominus` → ⊖, `\otimes` → ⊗, `\odot` → ⊙
+
+**特殊文字**
+- `\mathbb{A}`～`\mathbb{Z}` → 𝔸～ℤ（二重線文字）
+- `\mathfrak{A}`～`\mathfrak{Z}` → 𝔄～ℨ（フラクトゥール文字）
+
+**LaTeXコマンド**
+- `\section` → 🟥, `\subsection` → 🟨, `\subsubsection` → 🟩
+- `\begin` → ⏩, `\end` → ⏪, `\cite` → 📖, `\label` → 🏷️
+- `\ref` → 🔗, `\eqref` → 🔢, `\usepackage` → 📦, `\documentclass` → ☃️
+- `\title` → 📘, `\author` → 😎, `\date` → 📅, `\bibliography` → 📚
 
 #### 設定例
 ```json
@@ -145,7 +204,35 @@ Cursor Code Prettifierは、VS Code拡張機能で、LaTeXファイル内のコ�
 - 複数行にわたるコマンドには対応していません
 - ネストしたコマンドには対応していません
 
+## 今後の予定
+
+- [ ] Markdownファイルのサポート
+- [ ] 複数行コマンドのサポート
+- [ ] ネストしたコマンドのサポート
+- [ ] カスタム記号の追加機能
+- [ ] 設定のインポート/エクスポート機能
+
 ## リリースノート
+
+### 0.0.9
+- **豊富な数学記号サポート**: ギリシャ文字、矢印、集合演算、積分記号など300以上の記号を追加
+- **カテゴリ別グループ化**: 変換候補を論理的に分類して整理
+- **自動ビルドシステム**: 固定名VSIXファイルによる簡単な更新プロセス
+- **開発効率向上**: アンインストール不要の上書き更新機能
+
+### 0.0.8
+- ギリシャ文字の完全セットを追加（α～ω, Α～Ω）
+- 矢印記号の大幅拡充（→, ←, ↔, ⇒, ⇐, ⇔, など）
+- 集合演算記号の追加（∈, ∉, ⊂, ⊃, ∪, ∩, など）
+- 積分記号の拡充（∫, ∬, ∭, ∮, ∯, ∰, など）
+
+### 0.0.7
+- 特殊文字の追加（\mathbb A～Z, \mathfrak A～Z）
+- デフォルト変換候補の設定
+
+### 0.0.6
+- デフォルトJSONデータの実装
+- 自動化スクリプトの追加
 
 ### 0.0.2
 - ホバー機能の改善
@@ -170,9 +257,41 @@ npm run compile
 npm run watch
 ```
 
-### ビルド
-```bash
-npm run compile
+### ビルドコマンド
+
+| コマンド | 説明 |
+|---------|------|
+| `npm run compile` | TypeScriptをコンパイル |
+| `npm run watch` | ファイル変更を監視して自動コンパイル |
+| `npm run build` | バージョン更新 + コンパイル + パッケージング |
+| `npm run build-latest` | 固定名VSIXファイルを作成（推奨） |
+| `npm run build-quick` | バージョン更新なしでクイックビルド |
+
+### 開発ワークフロー
+
+1. **コードを変更**
+2. **ビルド実行**
+   ```bash
+   npm run build-latest
+   ```
+3. **インストール/更新**
+   - `cursor-code-prettifier-latest.vsix`をCursor/VS Codeでインストール
+   - 更新時は同じファイルで再インストール（アンインストール不要）
+
+### プロジェクト構造
+
+```
+cursor-code-prettifier/
+├── src/
+│   └── extension.ts          # メイン拡張機能コード
+├── scripts/
+│   ├── build-latest.js       # 固定名ビルドスクリプト
+│   ├── bump-version.js       # バージョン更新スクリプト
+│   ├── install-vsix.js       # インストールスクリプト
+│   └── update-extension.js   # 完全自動化スクリプト
+├── package.json              # 設定と変換候補の定義
+├── cursor-code-prettifier-latest.vsix  # 固定名VSIXファイル
+└── README.md                 # このファイル
 ```
 
 ## ライセンス
@@ -183,6 +302,22 @@ npm run compile
 
 バグ報告や機能要望は、GitHubのIssuesページでお知らせください。
 
+## 貢献
+
+バグ報告や機能要望は、GitHubのIssuesページでお知らせください。
+
+### 開発への参加
+
+1. このリポジトリをフォーク
+2. 機能ブランチを作成 (`git checkout -b feature/amazing-feature`)
+3. 変更をコミット (`git commit -m 'Add some amazing feature'`)
+4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
+5. プルリクエストを作成
+
+## ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。
+
 ---
 
-**お楽しみください！**
+**お楽しみください！** 🎉
