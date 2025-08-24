@@ -3,7 +3,7 @@
   "displayName": "Cursor Code Prettifier",
   "publisher": "kazumasa",
   "icon": "icon.png",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Replace LaTeX commands with symbols in the editor.",
   "repository": {
     "type": "git",
@@ -871,6 +871,214 @@
             {
               "original": "\\ll",
               "display": "≪"
+            },
+            {
+              "original": "\\mathcal{A}",
+              "display": "𝒜"
+            },
+            {
+              "original": "\\mathcal{B}",
+              "display": "ℬ"
+            },
+            {
+              "original": "\\mathcal{C}",
+              "display": "𝒞"
+            },
+            {
+              "original": "\\mathcal{D}",
+              "display": "𝒟"
+            },
+            {
+              "original": "\\mathcal{E}",
+              "display": "ℰ"
+            },
+            {
+              "original": "\\mathcal{F}",
+              "display": "ℱ"
+            },
+            {
+              "original": "\\mathcal{G}",
+              "display": "𝒢"
+            },
+            {
+              "original": "\\mathcal{H}",
+              "display": "ℋ"
+            },
+            {
+              "original": "\\mathcal{I}",
+              "display": "ℐ"
+            },
+            {
+              "original": "\\mathcal{J}",
+              "display": "𝒥"
+            },
+            {
+              "original": "\\mathcal{K}",
+              "display": "𝒦"
+            },
+            {
+              "original": "\\mathcal{L}",
+              "display": "ℒ"
+            },
+            {
+              "original": "\\mathcal{M}",
+              "display": "ℳ"
+            },
+            {
+              "original": "\\mathcal{N}",
+              "display": "𝒩"
+            },
+            {
+              "original": "\\mathcal{O}",
+              "display": "𝒪"
+            },
+            {
+              "original": "\\mathcal{P}",
+              "display": "𝒫"
+            },
+            {
+              "original": "\\mathcal{Q}",
+              "display": "𝒬"
+            },
+            {
+              "original": "\\mathcal{R}",
+              "display": "ℛ"
+            },
+            {
+              "original": "\\mathcal{S}",
+              "display": "𝒮"
+            },
+            {
+              "original": "\\mathcal{T}",
+              "display": "𝒯"
+            },
+            {
+              "original": "\\mathcal{U}",
+              "display": "𝒰"
+            },
+            {
+              "original": "\\mathcal{V}",
+              "display": "𝒱"
+            },
+            {
+              "original": "\\mathcal{W}",
+              "display": "𝒲"
+            },
+            {
+              "original": "\\mathcal{X}",
+              "display": "𝒳"
+            },
+            {
+              "original": "\\mathcal{Y}",
+              "display": "𝒴"
+            },
+            {
+              "original": "\\mathcal{Z}",
+              "display": "ℨ"
+            },
+            {
+              "original": "\\mathcal A",
+              "display": "𝒜"
+            },
+            {
+              "original": "\\mathcal B",
+              "display": "ℬ"
+            },
+            {
+              "original": "\\mathcal C",
+              "display": "𝒞"
+            },
+            {
+              "original": "\\mathcal D",
+              "display": "𝒟"
+            },
+            {
+              "original": "\\mathcal E",
+              "display": "ℰ"
+            },
+            {
+              "original": "\\mathcal F",
+              "display": "ℱ"
+            },
+            {
+              "original": "\\mathcal G",
+              "display": "𝒢"
+            },
+            {
+              "original": "\\mathcal H",
+              "display": "ℋ"
+            },
+            {
+              "original": "\\mathcal I",
+              "display": "ℐ"
+            },
+            {
+              "original": "\\mathcal J",
+              "display": "𝒥"
+            },
+            {
+              "original": "\\mathcal K",
+              "display": "𝒦"
+            },
+            {
+              "original": "\\mathcal L",
+              "display": "ℒ"
+            },
+            {
+              "original": "\\mathcal M",
+              "display": "ℳ"
+            },
+            {
+              "original": "\\mathcal N",
+              "display": "𝒩"
+            },
+            {
+              "original": "\\mathcal O",
+              "display": "𝒪"
+            },
+            {
+              "original": "\\mathcal P",
+              "display": "𝒫"
+            },
+            {
+              "original": "\\mathcal Q",
+              "display": "𝒬"
+            },
+            {
+              "original": "\\mathcal R",
+              "display": "ℛ"
+            },
+            {
+              "original": "\\mathcal S",
+              "display": "𝒮"
+            },
+            {
+              "original": "\\mathcal T",
+              "display": "𝒯"
+            },
+            {
+              "original": "\\mathcal U",
+              "display": "𝒰"
+            },
+            {
+              "original": "\\mathcal V",
+              "display": "𝒱"
+            },
+            {
+              "original": "\\mathcal W",
+              "display": "𝒲"
+            },
+            {
+              "original": "\\mathcal X",
+              "display": "𝒳"
+            },
+            {
+              "original": "\\mathcal Y",
+              "display": "𝒴"
+            },
+            {
+              "original": "\\mathcal Z",
+              "display": "ℨ"
             }
           ],
           "description": "記号グループの変換候補（ギリシャ文字、矢印、集合演算など）"
