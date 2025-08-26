@@ -3,7 +3,7 @@
   "displayName": "Cursor Code Prettifier",
   "publisher": "kazumasa",
   "icon": "icon.png",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "description": "Replace LaTeX commands with symbols in the editor.",
   "repository": {
     "type": "git",
@@ -25,6 +25,164 @@
         "cursorCodePrettifier.enabled": {
           "type": "boolean",
           "default": true
+        },
+        "cursorCodePrettifier.tex_commands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "original": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "original",
+              "display"
+            ]
+          },
+          "default": [
+            {
+              "original": "\\label",
+              "display": "🏷️"
+            },
+            {
+              "original": "\\ref",
+              "display": "🔗"
+            },
+            {
+              "original": "\\eqref",
+              "display": "🔢"
+            },
+            {
+              "original": "\\section",
+              "display": "🟥"
+            },
+            {
+              "original": "\\subsection",
+              "display": "🟨"
+            },
+            {
+              "original": "\\subsubsection",
+              "display": "🟩"
+            },
+            {
+              "original": "\\begin",
+              "display": "⏩"
+            },
+            {
+              "original": "\\end",
+              "display": "⏪"
+            },
+            {
+              "original": "\\cite",
+              "display": "📖"
+            },
+            {
+              "original": "\\newtheorem",
+              "display": "🏛️"
+            },
+            {
+              "original": "\\usepackage",
+              "display": "📦"
+            },
+            {
+              "original": "\\documentclass",
+              "display": "☃️"
+            },
+            {
+              "original": "\\title",
+              "display": "📘"
+            },
+            {
+              "original": "\\author",
+              "display": "😎"
+            },
+            {
+              "original": "\\date",
+              "display": "📅"
+            },
+            {
+              "original": "\\bibliographystyle",
+              "display": "🎨"
+            },
+            {
+              "original": "\\bibliography",
+              "display": "📚"
+            },
+            {
+              "original": "\\includegraphics",
+              "display": "🖼️"
+            },
+            {
+              "original": "\\address",
+              "display": "📍"
+            },
+            {
+              "original": "\\email",
+              "display": "📧"
+            },
+            {
+              "original": "\\subjclass",
+              "display": "🏗️"
+            },
+            {
+              "original": "\\keywords",
+              "display": "🔑"
+            }
+          ],
+          "description": "TeXコマンドグループの変換候補（\\begin, \\end, \\section, \\citeなど）"
+        },
+        "cursorCodePrettifier.math_commands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "original": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "original",
+              "display"
+            ]
+          },
+          "default": [
+            {
+              "original": "\\left",
+              "display": "️️️️◀️"
+            },
+            {
+              "original": "\\right",
+              "display": "️️▶️"
+            },
+            {
+              "original": "\\frac",
+              "display": "〓"
+            },
+            {
+              "original": "\\sqrt",
+              "display": "⟦√⟧"
+            },
+            {
+              "original": "\\bigg",
+              "display": "🌲"
+            },
+            {
+              "original": "\\quad",
+              "display": "💨"
+            },
+            {
+              "original": "\\\\",
+              "display": "⏎"
+            }
+          ],
+          "description": "数学コマンドグループの変換候補（\\frac, \\sqrt, \\left, \\right, \\bigg, \\quadなど）"
         },
         "cursorCodePrettifier.symbols": {
           "type": "array",
@@ -1083,144 +1241,6 @@
           ],
           "description": "記号グループの変換候補（ギリシャ文字、矢印、集合演算など）"
         },
-        "cursorCodePrettifier.math_commands": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "original": {
-                "type": "string"
-              },
-              "display": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "original",
-              "display"
-            ]
-          },
-          "default": [
-            {
-              "original": "\\left",
-              "display": "️️️️◀️"
-            },
-            {
-              "original": "\\right",
-              "display": "️️▶️"
-            },
-            {
-              "original": "\\frac",
-              "display": "〓"
-            },
-            {
-              "original": "\\sqrt",
-              "display": "⟦√⟧"
-            },
-            {
-              "original": "\\bigg",
-              "display": "🌲"
-            },
-            {
-              "original": "\\quad",
-              "display": "💨"
-            },
-            {
-              "original": "\\\\",
-              "display": "⏎"
-            }
-          ],
-          "description": "数学コマンドグループの変換候補（\\frac, \\sqrt, \\left, \\right, \\bigg, \\quadなど）"
-        },
-        "cursorCodePrettifier.tex_commands": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "original": {
-                "type": "string"
-              },
-              "display": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "original",
-              "display"
-            ]
-          },
-          "default": [
-            {
-              "original": "\\label",
-              "display": "🏷️"
-            },
-            {
-              "original": "\\ref",
-              "display": "🔗"
-            },
-            {
-              "original": "\\eqref",
-              "display": "🔢"
-            },
-            {
-              "original": "\\section",
-              "display": "🟥"
-            },
-            {
-              "original": "\\subsection",
-              "display": "🟨"
-            },
-            {
-              "original": "\\subsubsection",
-              "display": "🟩"
-            },
-            {
-              "original": "\\begin",
-              "display": "⏩"
-            },
-            {
-              "original": "\\end",
-              "display": "⏪"
-            },
-            {
-              "original": "\\cite",
-              "display": "📖"
-            },
-            {
-              "original": "\\newtheorem",
-              "display": "🏛️"
-            },
-            {
-              "original": "\\usepackage",
-              "display": "📦"
-            },
-            {
-              "original": "\\documentclass",
-              "display": "☃️"
-            },
-            {
-              "original": "\\title",
-              "display": "📘"
-            },
-            {
-              "original": "\\author",
-              "display": "😎"
-            },
-            {
-              "original": "\\date",
-              "display": "📅"
-            },
-            {
-              "original": "\\bibliographystyle",
-              "display": "🎨"
-            },
-            {
-              "original": "\\bibliography",
-              "display": "📚"
-            }
-          ],
-          "description": "TeXコマンドグループの変換候補（\\begin, \\end, \\section, \\citeなど）"
-        },
         "cursorCodePrettifier.hoverRevealMs": {
           "type": "number",
           "default": 1600,
@@ -1249,7 +1269,8 @@
     "watch": "tsc -w -p ./",
     "bump-version": "node scripts/bump-version.js",
     "build": "npm run bump-version && npm run compile && npx vsce package",
-    "build-quick": "npm run compile && npx vsce package",
+    "build-quick": "npm run clean-old-vsix && npm run compile && npx vsce package",
+    "clean-old-vsix": "node -e \"const fs=require('fs');fs.readdirSync('.').filter(f=>f.endsWith('.vsix')&&!f.includes('latest')).forEach(f=>{fs.unlinkSync(f);console.log('🗑️ Removed:',f);})\"",
     "build-latest": "node scripts/build-latest.js",
     "install-vsix": "node scripts/install-vsix.js",
     "update": "node scripts/update-extension.js"

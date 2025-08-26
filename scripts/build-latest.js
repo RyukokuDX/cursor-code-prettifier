@@ -5,6 +5,23 @@ const path = require('path');
 console.log('🔨 Building extension with fixed filename...');
 
 try {
+  // 0. 古いVSIXファイルのクリーンアップ
+  console.log('🧹 Cleaning up old VSIX files...');
+  const oldVsixFiles = fs.readdirSync('.').filter(file =>
+    file.endsWith('.vsix') &&
+    file !== 'cursor-code-prettifier-latest.vsix' &&
+    !file.includes('latest')
+  );
+
+  if (oldVsixFiles.length > 0) {
+    oldVsixFiles.forEach(file => {
+      fs.unlinkSync(file);
+      console.log(`🗑️ Removed old VSIX: ${file}`);
+    });
+  } else {
+    console.log('✨ No old VSIX files to clean up');
+  }
+
   // 1. バージョン更新
   console.log('📝 Updating version...');
   execSync('npm run bump-version', { stdio: 'inherit' });
