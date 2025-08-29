@@ -3,7 +3,7 @@
   "displayName": "Cursor Code Prettifier",
   "publisher": "kazumasa",
   "icon": "icon.png",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "Replace LaTeX commands with symbols in the editor.",
   "repository": {
     "type": "git",
@@ -1273,23 +1273,12 @@
         "cursorCodePrettifier.counterHighlightEnabled": {
           "type": "boolean",
           "default": true,
-          "description": "counterモードで番号マスクされている箇所に強調表示を適用します"
-        },
-        "cursorCodePrettifier.counterHighlightStyle": {
-          "type": "string",
-          "enum": [
-            "background",
-            "text",
-            "emoji",
-            "none"
-          ],
-          "default": "background",
-          "description": "counterモードの強調スタイル（background: 背景, text: 文字色, emoji: 絵文字を前置, none: なし）"
+          "description": "counterモードの置換結果を文字色で控えめに強調します"
         },
         "cursorCodePrettifier.counterTextColor": {
           "type": "string",
           "default": "#7aa2f7",
-          "description": "counterモードの text スタイルで使用する文字色（CSSカラー）"
+          "description": "counterモードで使用する文字色（CSSカラー）"
         }
       }
     }

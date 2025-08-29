@@ -4,7 +4,6 @@ import * as path from 'path';
 type Sub = { original: string; display: string };
 
 let deco: vscode.TextEditorDecorationType;
-let decoHi: vscode.TextEditorDecorationType;
 let ch: vscode.OutputChannel;
 
 // ドキュメントごとの装飾と索引
@@ -32,13 +31,7 @@ export function activate(ctx: vscode.ExtensionContext) {
     color: 'transparent',
     after: { color: new vscode.ThemeColor('editor.foreground') }
   });
-  // ハイライト用（counterモードで強調）
-  decoHi = vscode.window.createTextEditorDecorationType({
-    backgroundColor: new vscode.ThemeColor('editor.findMatchHighlightBackground'),
-    border: '1px solid',
-    borderColor: new vscode.ThemeColor('editor.findMatchBorder')
-  });
-  ctx.subscriptions.push(deco, decoHi, ch);
+  ctx.subscriptions.push(deco, ch);
 
   const ed0 = vscode.window.activeTextEditor;
   if (ed0) {
@@ -177,7 +170,6 @@ async function update(editor: vscode.TextEditor): Promise<void> {
   }
 
   const decos: vscode.DecorationOptions[] = [];
-  const decosHi: vscode.DecorationOptions[] = [];
   const index: Array<{ range: vscode.Range; original: string; display: string; lenCh: number }> = [];
 
   // ★確定済みマッチの占有区間（ドキュメントオフセット基準）でオーバーラップを禁止
@@ -207,10 +199,8 @@ async function update(editor: vscode.TextEditor): Promise<void> {
       const range = new vscode.Range(start, end);
       // 軽量な強調（text/emoji）のための after/before を組み立て
       const after = { contentText: shown, margin: `0 0 0 -${lenCh}ch`, color: counterHighlightEnabled && counterHighlightStyle === 'text' ? counterTextColor : undefined } as vscode.ThemableDecorationAttachmentRenderOptions;
-      const before = counterHighlightEnabled && counterHighlightStyle === 'emoji' ? { contentText: '🔎 ', margin: '0 0 0 0' } as vscode.ThemableDecorationAttachmentRenderOptions : undefined;
-      const d: vscode.DecorationOptions = { range, renderOptions: { before, after } };
+      const d: vscode.DecorationOptions = { range, renderOptions: { after } };
       decos.push(d);
-      if (counterHighlightEnabled && counterHighlightStyle === 'background') { decosHi.push({ range }); }
       index.push({ range, original: `\\${kind}`, display: shown, lenCh });
       taken.push([startOff, endOff]);
     }
@@ -245,13 +235,9 @@ async function update(editor: vscode.TextEditor): Promise<void> {
       const range = new vscode.Range(start, end);
       const afterBase = { contentText: shown, margin: `0 0 0 -${lenCh}ch` } as const;
       const after = { ...afterBase, color: counterHighlightEnabled && counterHighlightStyle === 'text' ? counterTextColor : undefined } as vscode.ThemableDecorationAttachmentRenderOptions;
-      const before = counterHighlightEnabled && counterHighlightStyle === 'emoji' ? { contentText: '🔎 ', margin: '0 0 0 0' } as vscode.ThemableDecorationAttachmentRenderOptions : undefined;
-      const d: vscode.DecorationOptions = { range, renderOptions: { before, after } };
+      const d: vscode.DecorationOptions = { range, renderOptions: { after } };
 
       decos.push(d);
-      if (counterHighlightEnabled && refMaskMode === 'counter' && (original === '\\ref' || original === '\\eqref') && counterHighlightStyle === 'background') {
-        decosHi.push({ range });
-      }
       index.push({ range, original, display: shown, lenCh });
       taken.push([startOff, endOff]); // 占有登録
     }
@@ -265,7 +251,6 @@ async function update(editor: vscode.TextEditor): Promise<void> {
   const effective = applyHiddenFilter(uri, decos);
   ch.appendLine(`[prettifier] decorations: total=${decos.length}, effective=${effective.length}`);
   editor.setDecorations(deco, effective);
-  editor.setDecorations(decoHi, decosHi);
 }
 
 function applyHiddenFilter(docUri: string, all: vscode.DecorationOptions[]): vscode.DecorationOptions[] {
