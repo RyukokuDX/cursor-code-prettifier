@@ -92,6 +92,32 @@ npm run build-latest
 - **デフォルト**: `true`
 - **説明**: TeXコマンドグループ（\\begin, \\end, \\section, \\citeなど）の有効/無効
 
+### `cursorCodePrettifier.refMaskMode`
+- **型**: `string` (`emoji` | `counter`)
+- **デフォルト**: `emoji`
+- **説明**: `\\ref`/`\\eqref` の表示方法。
+  - `emoji`: 従来通り、絵文字（`\\ref` → 🔗、`\\eqref` → 🔢）でマスク
+  - `counter`: LaTeX の `.aux` ファイルから参照ラベルのカウンター番号を取得してマスク（`\\ref{sec:intro}` → `1.2`、`\\eqref{eq:main}` → `(3)` など）
+
+注意:
+- `counter` は LaTeX のビルド済み `.aux` が存在する場合に有効です。未ビルド・未定義ラベルは従来表示のままになります。
+- Latex-Workshop 利用時は、ルートファイル取得を試み `.aux` を自動検出します。取得できない場合は、編集中ファイルの同名 `.aux` を参照します。
+
+### `cursorCodePrettifier.counterHighlightEnabled`
+- **型**: `boolean`
+- **デフォルト**: `true`
+- **説明**: counterモードで番号マスクしている箇所を控えめに強調します
+
+### `cursorCodePrettifier.counterHighlightStyle`
+- **型**: `string` (`background` | `text` | `emoji` | `none`)
+- **デフォルト**: `background`
+- **説明**: 強調スタイルを選択します（背景色/文字色/絵文字/なし）
+
+### `cursorCodePrettifier.counterTextColor`
+- **型**: `string`
+- **デフォルト**: `#7aa2f7`
+- **説明**: `counterHighlightStyle: "text"` のときの文字色
+
 ### `cursorCodePrettifier.symbols`
 - **型**: `array`
 - **説明**: 記号グループの変換候補（空の場合デフォルト値が使用されます）
@@ -156,6 +182,33 @@ npm run build-latest
 2. 設定で定義されたLaTeXコマンドが自動的に置き換えられて表示される
 3. 置き換えられたテキストにマウスを重ねると、元のコマンドがツールチップで表示される
 4. カーソルが置き換えられたテキスト上にある時も、一時的に元のコマンドが表示される
+
+### counterモード利用時のヒント
+- プロジェクト内の `.aux` をマージして参照しますが、編集中 `.tex` と同じディレクトリの `.aux` を最優先で使用します
+- `.aux` が存在しない場合は、近傍/親ディレクトリの `.aux` を探索するため、意図しない番号になることがあります
+
+`.aux` をビルド後に残すことを推奨します（いずれか一つでOK）:
+
+1) LaTeX-Workshop のクリーン機能を無効化
+```json
+{
+  "latex-workshop.latex.clean.enabled": false
+}
+```
+
+2) クリーン対象から `aux` を除外
+```json
+{
+  "latex-workshop.latex.clean.fileTypes": [
+    "bbl", "blg", "idx", "ind", "ilg", "log", "out", "toc"
+  ]
+}
+```
+
+3) `latexmk` を使う場合 `.latexmkrc` で削除拡張子を調整
+```perl
+$clean_ext = 'bbl blg idx ind ilg log out toc';
+```
 
 ## カスタマイズ
 

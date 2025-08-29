@@ -3,7 +3,7 @@
   "displayName": "Cursor Code Prettifier",
   "publisher": "kazumasa",
   "icon": "icon.png",
-  "version": "0.1.6",
+  "version": "0.1.26",
   "description": "Replace LaTeX commands with symbols in the editor.",
   "repository": {
     "type": "git",
@@ -1260,6 +1260,36 @@
           "type": "boolean",
           "default": true,
           "description": "TeXコマンドグループ（\\begin, \\end, \\section, \\citeなど）の有効/無効"
+        },
+        "cursorCodePrettifier.refMaskMode": {
+          "type": "string",
+          "enum": [
+            "emoji",
+            "counter"
+          ],
+          "default": "emoji",
+          "description": "\\ref/\\eqref の表示方法。emoji: 絵文字でマスク（従来動作）、counter: .aux のカウンター値でマスク"
+        },
+        "cursorCodePrettifier.counterHighlightEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "counterモードで番号マスクされている箇所に強調表示を適用します"
+        },
+        "cursorCodePrettifier.counterHighlightStyle": {
+          "type": "string",
+          "enum": [
+            "background",
+            "text",
+            "emoji",
+            "none"
+          ],
+          "default": "background",
+          "description": "counterモードの強調スタイル（background: 背景, text: 文字色, emoji: 絵文字を前置, none: なし）"
+        },
+        "cursorCodePrettifier.counterTextColor": {
+          "type": "string",
+          "default": "#7aa2f7",
+          "description": "counterモードの text スタイルで使用する文字色（CSSカラー）"
         }
       }
     }
