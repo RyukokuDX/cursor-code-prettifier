@@ -3,7 +3,7 @@
   "displayName": "Cursor Code Prettifier",
   "publisher": "kazumasa",
   "icon": "icon.png",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "description": "Replace LaTeX commands with symbols in the editor.",
   "repository": {
     "type": "git",
@@ -328,11 +328,11 @@
             },
             {
               "original": "\\phi",
-              "display": "ϕ"
+              "display": "φ"
             },
             {
               "original": "\\varphi",
-              "display": "φ"
+              "display": "ϕ"
             },
             {
               "original": "\\chi",
