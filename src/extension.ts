@@ -9,6 +9,9 @@ let ch: vscode.OutputChannel;
 // ドキュメントごとの装飾と索引
 const docDecos = new Map<string, vscode.DecorationOptions[]>();
 const docIndex = new Map<string, Array<{ range: vscode.Range; original: string; display: string; lenCh: number }>>();
+// マスク制御：全体/行トグル
+const docMaskAll = new Map<string, boolean>(); // true: マスク有効, false: 全解除
+const docMaskOffLines = new Map<string, Set<number>>(); // 解除行
 
 // hover/キャレットで一時的に非表示にした範囲の管理
 const hiddenKeys = new Set<string>();
@@ -53,6 +56,42 @@ export function activate(ctx: vscode.ExtensionContext) {
         const ed = vscode.window.activeTextEditor;
         if (ed) { void update(ed); }
       }
+    }),
+    vscode.workspace.onDidCloseTextDocument((doc: vscode.TextDocument) => {
+      const uri = doc.uri.toString();
+      docDecos.delete(uri);
+      docIndex.delete(uri);
+      docMaskAll.delete(uri);
+      docMaskOffLines.delete(uri);
+    }),
+    // コマンド: 行トグル
+    vscode.commands.registerCommand('cursorCodePrettifier.toggleMaskLine', () => {
+      const ed = vscode.window.activeTextEditor; if (!ed) { return; }
+      const uri = ed.document.uri.toString();
+      const set = docMaskOffLines.get(uri) ?? new Set<number>();
+      let toggled = 0; let toOff: boolean | undefined = undefined;
+      for (const sel of ed.selections) {
+        const start = Math.min(sel.start.line, sel.end.line);
+        const end = Math.max(sel.start.line, sel.end.line);
+        for (let ln = start; ln <= end; ln++) {
+          if (toOff === undefined) { toOff = !set.has(ln); }
+          if (toOff) { set.add(ln); } else { set.delete(ln); }
+          toggled++;
+        }
+      }
+      docMaskOffLines.set(uri, set);
+      ch.appendLine(`[prettifier] line: toggled lines=${toggled} → ${toOff ? 'off' : 'on'}`);
+      void update(ed);
+    }),
+    // コマンド: 全体トグル
+    vscode.commands.registerCommand('cursorCodePrettifier.toggleMaskAll', () => {
+      const ed = vscode.window.activeTextEditor; if (!ed) { return; }
+      const uri = ed.document.uri.toString();
+      const cur = docMaskAll.get(uri);
+      const next = cur === false ? true : false; // undefined→false
+      docMaskAll.set(uri, next);
+      ch.appendLine(`[prettifier] doc: toggled document → ${next ? 'on' : 'off'}`);
+      void update(ed);
     })
   );
 
@@ -60,6 +99,9 @@ export function activate(ctx: vscode.ExtensionContext) {
   ctx.subscriptions.push(
     vscode.languages.registerHoverProvider([{ language: 'latex' }, { language: 'tex' }], {
       provideHover(document: vscode.TextDocument, position: vscode.Position) {
+        const cfgAR = vscode.workspace.getConfiguration('cursorCodePrettifier');
+        const allow = cfgAR.get<boolean>('autoRevealOnHover', false);
+        if (!allow) { return; }
         const uri = document.uri.toString();
         const list = docIndex.get(uri) ?? [];
         const hit = list.find(v => v.range.contains(position));
@@ -74,6 +116,9 @@ export function activate(ctx: vscode.ExtensionContext) {
   // キャレットが入った時も元語を保持（編集しやすく）
   ctx.subscriptions.push(
     vscode.window.onDidChangeTextEditorSelection((ev: vscode.TextEditorSelectionChangeEvent) => {
+      const cfgAR = vscode.workspace.getConfiguration('cursorCodePrettifier');
+      const allow = cfgAR.get<boolean>('autoRevealOnCaret', false);
+      if (!allow) { return; }
       const ed = ev.textEditor;
       const pos = ev.selections[0]?.active;
       if (!pos) { return; }
@@ -254,8 +299,15 @@ async function update(editor: vscode.TextEditor): Promise<void> {
 }
 
 function applyHiddenFilter(docUri: string, all: vscode.DecorationOptions[]): vscode.DecorationOptions[] {
+  // 全体OFF/行OFF を先に適用
+  const allOn = docMaskAll.get(docUri);
+  if (allOn === false) { return []; }
+  const offLines = docMaskOffLines.get(docUri);
+  const lineFiltered = offLines && offLines.size > 0
+    ? all.filter(d => !offLines.has(d.range.start.line))
+    : all;
   // 現在保持中のキーに該当する範囲は取り除いて返す
-  const filtered = all.filter(d => {
+  const filtered = lineFiltered.filter(d => {
     const key = rangeKeyOf(docUri, d.range);
     return !hiddenKeys.has(key);
   });

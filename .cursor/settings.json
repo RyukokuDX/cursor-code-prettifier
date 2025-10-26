@@ -1,0 +1,22 @@
+{
+  "cursorCodePrettifier.refMaskMode": "counter",
+  "cursorCodePrettifier.counterHighlightEnabled": true,
+  "cursorCodePrettifier.counterTextColor": "#7aa2f7",
+  "cursorCodePrettifier.autoRevealOnHover": false,
+  "cursorCodePrettifier.autoRevealOnCaret": false,
+
+  "keybindings": [
+    {
+      "key": "ctrl+alt+; ctrl+l",
+      "command": "cursorCodePrettifier.toggleMaskLine",
+      "when": "editorTextFocus && (editorLangId == latex || editorLangId == tex)"
+    },
+    {
+      "key": "ctrl+alt+; ctrl+shift+l",
+      "command": "cursorCodePrettifier.toggleMaskAll",
+      "when": "editorTextFocus && (editorLangId == latex || editorLangId == tex)"
+    }
+  ]
+}
+
+

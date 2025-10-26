@@ -183,6 +183,25 @@ npm run build-latest
 3. 置き換えられたテキストにマウスを重ねると、元のコマンドがツールチップで表示される
 4. カーソルが置き換えられたテキスト上にある時も、一時的に元のコマンドが表示される
 
+### マスク表示のトグル（行/全体）
+- コマンド（Command Palette）
+  - Cursor Code Prettifier: Toggle Mask (Current Line)
+    - コマンドID: `cursorCodePrettifier.toggleMaskLine`
+  - Cursor Code Prettifier: Toggle Mask (Document)
+    - コマンドID: `cursorCodePrettifier.toggleMaskAll`
+- 推奨キー割当（例）: `keybindings.json`
+```json
+[
+  { "key": "ctrl+alt+m", "command": "cursorCodePrettifier.toggleMaskLine", "when": "editorTextFocus && (editorLangId == latex || editorLangId == tex)" },
+  { "key": "ctrl+alt+shift+m", "command": "cursorCodePrettifier.toggleMaskAll", "when": "editorTextFocus && (editorLangId == latex || editorLangId == tex)" }
+]
+```
+
+### 自動解除の制御（既定OFF）
+- `cursorCodePrettifier.autoRevealOnHover`: ホバーで一時的にマスク解除
+- `cursorCodePrettifier.autoRevealOnCaret`: キャレット位置で一時的にマスク解除
+- 既定はどちらも `false`（無効）。必要な場合のみ有効化してください。
+
 ### counterモード利用時のヒント
 - プロジェクト内の `.aux` をマージして参照しますが、編集中 `.tex` と同じディレクトリの `.aux` を最優先で使用します
 - `.aux` が存在しない場合は、近傍/親ディレクトリの `.aux` を探索するため、意図しない番号になることがあります

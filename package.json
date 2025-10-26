@@ -3,7 +3,7 @@
   "displayName": "Cursor Code Prettifier",
   "publisher": "kazumasa",
   "icon": "icon.png",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "description": "Replace LaTeX commands with symbols in the editor.",
   "repository": {
     "type": "git",
@@ -19,6 +19,16 @@
     "onLanguage:tex"
   ],
   "contributes": {
+    "commands": [
+      {
+        "command": "cursorCodePrettifier.toggleMaskLine",
+        "title": "Cursor Code Prettifier: Toggle Mask (Current Line)"
+      },
+      {
+        "command": "cursorCodePrettifier.toggleMaskAll",
+        "title": "Cursor Code Prettifier: Toggle Mask (Document)"
+      }
+    ],
     "configuration": {
       "title": "Cursor Code Prettifier",
       "properties": {
@@ -1279,6 +1289,16 @@
           "type": "string",
           "default": "#7aa2f7",
           "description": "counterモードで使用する文字色（CSSカラー）"
+        },
+        "cursorCodePrettifier.autoRevealOnHover": {
+          "type": "boolean",
+          "default": false,
+          "description": "ホバーで一時的にマスク解除（デフォルト無効）"
+        },
+        "cursorCodePrettifier.autoRevealOnCaret": {
+          "type": "boolean",
+          "default": false,
+          "description": "キャレット行で一時的にマスク解除（デフォルト無効）"
         }
       }
     }
