@@ -8,6 +8,10 @@ try {
   console.log('📝 Updating version...');
   execSync('npm run bump-version', { stdio: 'inherit' });
   
+  // 1.5. リリースノート注入
+  console.log('📝 Injecting release notes...');
+  execSync('node scripts/inject-release-notes.js', { stdio: 'inherit' });
+  
   // 2. ビルド
   console.log('🔨 Building extension...');
   execSync('npm run compile', { stdio: 'inherit' });

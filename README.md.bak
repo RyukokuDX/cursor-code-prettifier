@@ -267,27 +267,6 @@ $clean_ext = 'bbl blg idx ind ilg log out toc';
 
 ## リリースノート
 
-### 0.1.30 (2025-10-26)
-- Spec: changement/v00_01_30_log_injection.md
-
-#### Added
-- 
-
-#### Changed
-- 
-
-#### Fixed
-- 
-
-#### Docs
-- 
-
-#### Chore
-- 
-
-
-
-
 ### 0.1.0
 - **グループ別切り替え機能**: 記号・数学コマンド・TeXコマンドの3グループを個別に有効/無効可能
 - **設定構造の改善**: `substitutions`を`symbols`、`math_commands`、`tex_commands`に分割
