@@ -139,7 +139,10 @@ npm run build-latest
 
 **Neovim統合環境での使用**
 
-Cursor/VS CodeでNeovimを使用している場合（`vscode-neovim`など）、`.nvim.lua`ファイルに設定を追加することで`:Ml`コマンドで行のマスクをトグルできます。
+Cursor/VS CodeでNeovimを使用している場合（`vscode-neovim`など）、以下の機能が利用できます：
+
+- **手動マスク切り替え**: `.nvim.lua`ファイルに設定を追加することで`:Ml`コマンドで行のマスクをトグルできます
+- **自動マスク切り替え**: インサートモードでカーソル行のマスクOFF、ノーマルモードでマスクONを自動的に実行できます
 
 詳細は[Neovim統合ガイド](docs/neovim-integration.md)を参照してください。
 

@@ -50,6 +50,75 @@ end, {
    - LaTeX/TeXファイルを開いている状態で`:Ml`を実行すると、現在の行のマスクがトグルされます
    - 複数行を選択している場合は、選択範囲のすべての行がトグルされます
 
+## 自動マスク切り替え
+
+インサートモードとノーマルモードに応じて、カーソル行のマスクを自動的に切り替えることができます。
+
+### 機能の説明
+
+この機能を有効にすると：
+- **インサートモードに入った時**: カーソル行のマスクが自動的にOFFになり、元のLaTeXコマンドが表示されます（編集しやすくなります）
+- **ノーマルモードに戻った時**: マスクONは手動で`:Ml`コマンドを実行して戻す必要があります
+
+### 設定方法
+
+`.nvim.lua`ファイルに以下のオートコマンドを追加してください：
+
+```lua
+-- 自動マスク切り替え: インサートモードでカーソル行のマスクOFF（マスクONは手動で:Mlコマンドで実行）
+vim.api.nvim_create_autocmd("InsertEnter", {
+  pattern = "*.tex,*.latex",
+  callback = function()
+    -- インサートモードに入った時は即座にマスクOFF
+    vim.fn.VSCodeCall("cursorCodePrettifier.maskLineOff")
+  end,
+})
+```
+
+### 設定例（完全版）
+
+既存のコマンド設定と組み合わせた完全な設定例：
+
+```lua
+-- Cursor Code Prettifier: マスク機能のコマンド
+vim.api.nvim_create_user_command("Ml", function()
+  local ok, res = pcall(vim.fn.VSCodeCall, "cursorCodePrettifier.toggleMaskLine")
+  print("Ml VSCodeCall ok=", ok, " res=", res)
+end, {
+  desc = "Toggle mask for current line(s)"
+})
+
+-- ドキュメント全体のマスクをトグル
+vim.api.nvim_create_user_command("Ma", function()
+  vim.fn.VSCodeCall("cursorCodePrettifier.toggleMaskAll")
+end, {
+  desc = "Toggle mask for entire document"
+})
+
+-- Mode line用: .nvim.luaを簡単に読み込むコマンド
+vim.api.nvim_create_user_command("Neo", function()
+  vim.cmd("luafile .nvim.lua")
+end, {
+  desc = "Reload .nvim.lua file"
+})
+
+-- 自動マスク切り替え: インサートモードでカーソル行のマスクOFF（マスクONは手動で:Mlコマンドで実行）
+vim.api.nvim_create_autocmd("InsertEnter", {
+  pattern = "*.tex,*.latex",
+  callback = function()
+    -- インサートモードに入った時は即座にマスクOFF
+    vim.fn.VSCodeCall("cursorCodePrettifier.maskLineOff")
+  end,
+})
+```
+
+### 注意事項
+
+- `.tex`および`.latex`ファイルのみに適用されるように`pattern`を指定しています
+- インサートモードに入るとカーソル行のマスクが自動的にOFFになり、編集時は元のコマンドが見えるようになります
+- ノーマルモードに戻った後、マスクONに戻すには`:Ml`コマンドを手動で実行する必要があります
+- 自動マスク切り替えは、既存の手動トグルコマンド（`:Ml`、`:Ma`）と併用できます
+
 ## トラブルシューティング
 
 ### コマンドが「not an editor command」と表示される場合

@@ -1315,6 +1315,11 @@
           "type": "boolean",
           "default": false,
           "description": "キャレット行で一時的にマスク解除（デフォルト無効）"
+        },
+        "cursorCodePrettifier.neovimAutoMaskToggle": {
+          "type": "boolean",
+          "default": false,
+          "description": "Neovim環境での自動マスク切り替えを有効にする（.nvim.luaに設定が必要）"
         }
       }
     }
