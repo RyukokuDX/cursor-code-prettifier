@@ -16,7 +16,8 @@
       "command": "cursorCodePrettifier.toggleMaskAll",
       "when": "editorTextFocus && (editorLangId == latex || editorLangId == tex)"
     }
-  ]
+  ],
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim"
 }
 
 
