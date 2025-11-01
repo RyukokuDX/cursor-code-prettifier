@@ -1,0 +1,118 @@
+---
+alwaysApply: false
+---
+
+# VSIXファイルの更新方法
+
+VSIXファイルのビルドと配布に関する手順
+
+## 概要
+
+このルールは、VSIXファイルのビルドと配布に関するワークフローを定義します。変更仕様書のコミットと組み合わせて使用します。
+
+### ワークフローとの関係
+
+VSIXファイルの更新は、変更仕様書のコミットと組み合わせて使用する場合、以下の順序で実行します:
+
+1. **変更仕様書の作成・編集**
+2. **VSIXファイルのビルド**（`npm run build-latest`）- この時点で`package.json`のバージョンが更新される
+3. **変更仕様書のコミットとタグ付け**（`npm run commit-latest-spec`）- 更新されたバージョン情報が反映される
+
+詳細は [bump.mdc](./bump.mdc) を参照してください。
+
+## 更新の流れ
+
+1. **変更仕様書の作成・編集**
+   - `changement/` ディレクトリ内の変更仕様書を作成または更新
+
+2. **VSIXファイルのビルド**
+   ```bash
+   npm run build-latest
+   ```
+
+   このコマンドは以下を実行します:
+   - バージョン更新（`package.json`のバージョンを更新）
+   - リリースノート注入（README.mdとCHANGELOG.mdに最新の変更内容を追加）
+   - TypeScriptのコンパイル
+   - VSIXパッケージの作成
+   - 固定名ファイル `cursor-code-prettifier-latest.vsix` の生成
+
+3. **変更仕様書のコミットとタグ付け**（オプション）
+   ```bash
+   npm run commit-latest-spec
+   ```
+
+   **注意**: VSIXビルド後に変更仕様書をコミットすることで、ビルド時に更新されたバージョン情報がコミットメッセージとタグに反映されます。
+
+4. **VSIXファイルのインストール/更新**
+
+   **Cursor/VS Codeでのインストール手順:**
+   1. 拡張機能タブを開く（`Ctrl+Shift+X` または `Cmd+Shift+X`）
+   2. 右上の「...」メニュー（歯車アイコン）をクリック
+   3. 「VSIXからのインストール」を選択
+   4. `cursor-code-prettifier-latest.vsix` を選択
+
+   **更新の場合:**
+   - 同じ `cursor-code-prettifier-latest.vsix` ファイルで再インストールするだけで更新されます
+   - **アンインストール不要**（上書きインストール）
+
+## ビルドコマンドの詳細
+
+### `npm run build-latest`（推奨）
+
+固定名のVSIXファイルを作成します。推奨される方法です。
+
+- 実行内容:
+  - `npm run bump-version`: バージョン番号を更新
+  - `scripts/inject-release-notes.js`: リリースノートを自動注入
+  - `npm run compile`: TypeScriptをコンパイル
+  - `npx vsce package`: VSIXパッケージを作成
+  - 古いVSIXファイルを `old/` ディレクトリにアーカイブ
+  - 最新のVSIXファイルを `cursor-code-prettifier-latest.vsix` にコピー
+
+- 出力:
+  - `cursor-code-prettifier-latest.vsix`: 固定名のVSIXファイル（常に最新版）
+
+### その他のビルドコマンド
+
+```bash
+# クイックビルド（バージョン更新なし）
+npm run build-quick
+
+# 通常ビルド（バージョン付きファイル名で作成）
+npm run build
+```
+
+## 完全な更新ワークフロー例
+
+```bash
+# 1. 変更仕様書を編集
+# ... changement/v00_01_31_feature_name.md を作成/編集 ...
+
+# 2. VSIXファイルをビルド（この時点で package.json のバージョンが更新される）
+npm run build-latest
+
+# 3. 変更仕様書をコミット（更新されたバージョン情報がコミットメッセージとタグに反映される）
+npm run commit-latest-spec -- --push
+
+# 4. Cursor/VS Codeでインストール
+# - 拡張機能タブ → 「...」 → 「VSIXからのインストール」
+# - cursor-code-prettifier-latest.vsix を選択
+```
+
+**重要**: 変更仕様書のコミットと組み合わせる場合、必ず **VSIXビルド → コミット** の順序で実行してください。
+- VSIXビルドで`package.json`のバージョンが更新されます
+- その後にコミットすることで、更新されたバージョンがタグに反映されます
+
+## VSIXファイルの場所
+
+- **固定名ファイル**: `cursor-code-prettifier-latest.vsix`（推奨、常に最新版）
+- **バージョン付きファイル**: `cursor-code-prettifier-{version}.vsix`（例: `cursor-code-prettifier-0.1.30.vsix`）
+- **アーカイブ**: `old/` ディレクトリ内に古いバージョンが保存されます
+
+## 注意事項
+
+- **固定名ファイル**: `cursor-code-prettifier-latest.vsix` は常に最新のビルドを指します
+- **更新時**: 同じファイルで再インストールするだけで更新されます（アンインストール不要）
+- **バージョン管理**: `build-latest` 実行時に自動的にバージョンが更新されます
+- **リリースノート**: `build-latest` 実行時に自動的に README.md と CHANGELOG.md に最新の変更内容が追加されます

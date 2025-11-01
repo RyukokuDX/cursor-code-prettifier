@@ -87,7 +87,94 @@ function parseSpecFile(filePath) {
   // Clean up changes section (remove excessive whitespace)
   changesSection = changesSection.replace(/\n{3,}/g, '\n\n').trim();
   
-  return { version, date, changes: changesSection };
+  return { version, date, changes: changesSection, lines: lines };
+}
+
+/**
+ * Extract commit message section from spec file
+ */
+function extractCommitMessageSection(lines) {
+  let commitMsgStartIdx = -1;
+  let commitMsgEndIdx = lines.length;
+  
+  // Find "## コミットメッセージ" section
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].match(/^##+\s*コミットメッセージ/i)) {
+      commitMsgStartIdx = i;
+      // Find the end of this section (next ## header or end of file)
+      for (let j = i + 1; j < lines.length; j++) {
+        if (lines[j].match(/^##+\s/)) {
+          commitMsgEndIdx = j;
+          break;
+        }
+      }
+      break;
+    }
+  }
+  
+  if (commitMsgStartIdx === -1) {
+    return null;
+  }
+  
+  // Extract commit message content (skip the header line)
+  const commitMessage = lines
+    .slice(commitMsgStartIdx + 1, commitMsgEndIdx)
+    .join('\n')
+    .trim();
+  
+  return commitMessage || null;
+}
+
+/**
+ * Update or add commit message section to spec file
+ */
+function updateCommitMessageSection(filePath, commitMessage) {
+  const content = fs.readFileSync(filePath, 'utf8');
+  const lines = content.split('\n');
+  
+  let commitMsgStartIdx = -1;
+  let commitMsgEndIdx = -1;
+  
+  // Find existing "## コミットメッセージ" section
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].match(/^##+\s*コミットメッセージ/i)) {
+      commitMsgStartIdx = i;
+      // Find the end of this section (next ## header or end of file)
+      for (let j = i + 1; j < lines.length; j++) {
+        if (lines[j].match(/^##+\s/)) {
+          commitMsgEndIdx = j;
+          break;
+        }
+      }
+      if (commitMsgEndIdx === -1) {
+        commitMsgEndIdx = lines.length;
+      }
+      break;
+    }
+  }
+  
+  // Split commit message into lines
+  const commitMsgLines = commitMessage.split('\n');
+  
+  let newLines;
+  if (commitMsgStartIdx !== -1) {
+    // Update existing section
+    newLines = [
+      ...lines.slice(0, commitMsgStartIdx + 1),
+      ...commitMsgLines,
+      ...lines.slice(commitMsgEndIdx)
+    ];
+  } else {
+    // Add new section at the end
+    newLines = [
+      ...lines,
+      '',
+      '## コミットメッセージ',
+      ...commitMsgLines
+    ];
+  }
+  
+  fs.writeFileSync(filePath, newLines.join('\n'), 'utf8');
 }
 
 function parseArgs(argv) {
@@ -123,7 +210,7 @@ try {
     throw new Error(`Target spec not found: ${target}`);
   }
 
-  const rel = path.relative(process.cwd(), target);
+  const rel = path.relative(repoRoot, target);
   const fileName = path.basename(target);
   
   // Parse spec file to extract version, date, and changes
@@ -153,22 +240,35 @@ try {
     process.exit(0);
   }
 
-  // Stage only target file
-  execSync(`git add -- "${rel}"`, { stdio: 'inherit' });
+  // Update commit message section in spec file
+  updateCommitMessageSection(target, commitMessage);
+  console.log('📝 Commit message section updated in spec file');
+
+  // Stage spec file (including the updated commit message section)
+  execSync(`git add -- "${rel}"`, { stdio: 'inherit', cwd: repoRoot });
 
   // Check if there is anything to commit
-  const changes = execSync('git diff --cached --name-only', { encoding: 'utf8' }).trim();
+  const changes = execSync('git diff --cached --name-only', { encoding: 'utf8', cwd: repoRoot }).trim();
   if (!changes) {
     console.log('⏭️ Skip: nothing to commit');
     process.exit(0);
   }
 
-  // Use temporary file for commit message to safely handle multi-line and special characters
+  // Extract commit message section from spec file and use it for commit
+  const updatedSpecInfo = parseSpecFile(target);
+  const extractedCommitMsg = extractCommitMessageSection(updatedSpecInfo.lines);
+  
+  if (!extractedCommitMsg) {
+    throw new Error('Failed to extract commit message section from spec file');
+  }
+
+  // Use spec file itself as commit message source via -F option
+  // Create a temporary file with just the commit message section content
   const tmpCommitMsg = path.join(repoRoot, '.git-commit-msg.tmp');
-  fs.writeFileSync(tmpCommitMsg, commitMessage, 'utf8');
+  fs.writeFileSync(tmpCommitMsg, extractedCommitMsg, 'utf8');
   try {
     execSync(`git commit -F "${tmpCommitMsg}"`, { stdio: 'inherit', cwd: repoRoot });
-    console.log('✅ Spec committed');
+    console.log('✅ Spec committed using commit message from spec file');
   } finally {
     // Clean up temp file
     if (fs.existsSync(tmpCommitMsg)) {
