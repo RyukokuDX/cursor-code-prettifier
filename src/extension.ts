@@ -92,6 +92,58 @@ export function activate(ctx: vscode.ExtensionContext) {
       docMaskAll.set(uri, next);
       ch.appendLine(`[prettifier] doc: toggled document → ${next ? 'on' : 'off'}`);
       void update(ed);
+    }),
+    // コマンド: 行マスクON
+    vscode.commands.registerCommand('cursorCodePrettifier.maskLineOn', () => {
+      const ed = vscode.window.activeTextEditor; if (!ed) { return; }
+      const uri = ed.document.uri.toString();
+      const set = docMaskOffLines.get(uri) ?? new Set<number>();
+      let processed = 0;
+      for (const sel of ed.selections) {
+        const start = Math.min(sel.start.line, sel.end.line);
+        const end = Math.max(sel.start.line, sel.end.line);
+        for (let ln = start; ln <= end; ln++) {
+          set.delete(ln);
+          processed++;
+        }
+      }
+      docMaskOffLines.set(uri, set);
+      ch.appendLine(`[prettifier] line: masked on lines=${processed}`);
+      void update(ed);
+    }),
+    // コマンド: 行マスクOFF
+    vscode.commands.registerCommand('cursorCodePrettifier.maskLineOff', () => {
+      const ed = vscode.window.activeTextEditor; if (!ed) { return; }
+      const uri = ed.document.uri.toString();
+      const set = docMaskOffLines.get(uri) ?? new Set<number>();
+      let processed = 0;
+      for (const sel of ed.selections) {
+        const start = Math.min(sel.start.line, sel.end.line);
+        const end = Math.max(sel.start.line, sel.end.line);
+        for (let ln = start; ln <= end; ln++) {
+          set.add(ln);
+          processed++;
+        }
+      }
+      docMaskOffLines.set(uri, set);
+      ch.appendLine(`[prettifier] line: masked off lines=${processed}`);
+      void update(ed);
+    }),
+    // コマンド: 全体マスクON
+    vscode.commands.registerCommand('cursorCodePrettifier.maskAllOn', () => {
+      const ed = vscode.window.activeTextEditor; if (!ed) { return; }
+      const uri = ed.document.uri.toString();
+      docMaskAll.set(uri, true);
+      ch.appendLine(`[prettifier] doc: masked on document`);
+      void update(ed);
+    }),
+    // コマンド: 全体マスクOFF
+    vscode.commands.registerCommand('cursorCodePrettifier.maskAllOff', () => {
+      const ed = vscode.window.activeTextEditor; if (!ed) { return; }
+      const uri = ed.document.uri.toString();
+      docMaskAll.set(uri, false);
+      ch.appendLine(`[prettifier] doc: masked off document`);
+      void update(ed);
     })
   );
 

@@ -3,7 +3,7 @@
   "displayName": "Cursor Code Prettifier",
   "publisher": "kazumasa",
   "icon": "icon.png",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "description": "Replace LaTeX commands with symbols in the editor.",
   "repository": {
     "type": "git",
@@ -27,6 +27,22 @@
       {
         "command": "cursorCodePrettifier.toggleMaskAll",
         "title": "Cursor Code Prettifier: Toggle Mask (Document)"
+      },
+      {
+        "command": "cursorCodePrettifier.maskLineOn",
+        "title": "Cursor Code Prettifier: Mask Line On"
+      },
+      {
+        "command": "cursorCodePrettifier.maskLineOff",
+        "title": "Cursor Code Prettifier: Mask Line Off"
+      },
+      {
+        "command": "cursorCodePrettifier.maskAllOn",
+        "title": "Cursor Code Prettifier: Mask All On"
+      },
+      {
+        "command": "cursorCodePrettifier.maskAllOff",
+        "title": "Cursor Code Prettifier: Mask All Off"
       }
     ],
     "configuration": {
